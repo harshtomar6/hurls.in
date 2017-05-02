@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zippy | <%= data.firstName %></title>
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/dashboardStyle.css">
+</head>
+<body>
+
+    <%- include header.ejs %>
+    <div class="tab-wraper">
+        <div class="row">
+            <div class="col-xs-4 tab selected" id="alllinks">
+                <h4 class='text-center'>All Links <span class="badge"></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h4>
+
+            </div>
+            <div class="col-xs-4 tab" id="customlinks">
+                <h4 class='text-center'>Custom Links <span class="badge"></span></h4>
+            </div>
+            <div class="col-xs-4 tab">
+                <h4 class='text-center'>Masked Links</h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid" style="padding-top: 150px; padding-bottom: 20px;min-height: 600px; background-image: url('/assets/banner01.jpg'); background-size: cover; background-attachment: fixed;">
+        <div class="row">
+        <div class="col-md-3 col-sm-3"></div>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="alert linkalert">
+                <i class="fa fa-exclamation-circle fa-fw"></i> <strong class="msg">You dont have any links! <span class="link" data-toggle="modal" data-target="#link-modal">Add Now</span></strong>
+            </div>
+            <div class="alert maskalert">
+                <i class="fa fa-exclamation-circle fa-fw"></i> <strong class="msg">Coming Soon...</strong>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-3"></div>
+        </div>
+
+        <div class="row linkData">
+        </div>
+        <div class="modal fade" id="loader-modal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="loader"></div>
+            </div>
+        </div>
+    </div>
+    <!--MODAL-->
+    <div class="modal fade" id="link-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                        <span aria-hidden="true" class="title">&times;</span>
+                    </button>
+                    <h5 class="modal-title text-center"><i class="fa fa-plus fa-fw"></i> Add Link</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="alert" id="linkmsg">
+                        <i class="fa fa-exclamation-triangle fa-fw"></i> <strong>Enter valid URL</strong>
+                    </div>
+                    <form action="/new" method="post" id="link-form">
+                        <div class="form-wrap">
+                            <i class="fa fa-link fa-fw form-icon"></i>
+                            <input class="form-control" type="text" placeholder="Enter a URL" name="url" required>
+                        </div>
+                        <div class="form-check">
+                          <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" id="isCustom" value="">
+                            &nbsp;Custom URL
+                          </label>
+                        </div>
+                        <div class="form-wrap" id="customUrl">
+                            <i class="fa fa-key fa-fw form-icon"></i>
+                            <input class="form-control" type="text" placeholder="Custom Url" name="custom-url" value="http://localhost:3000/">
+                        </div>
+                        <input type="submit" class="btn btn-sec btn-full" value="Shorten">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Mask Link modal-->
+    <!--<div class="modal fade" id="mask-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                        <span aria-hidden="true" class="title">&times;</span>
+                    </button>
+                    <h5 class="modal-title text-center"><i class="fa fa-plus fa-fw"></i> Mask Link</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="alert" id="maskmsg">
+                        <i class="fa fa-exclamation-triangle fa-fw"></i> <strong>Enter valid URL</strong>
+                    </div>
+                    <form action="/new" method="post" id="mask-form">
+                        <div class="form-wrap">
+                            <i class="fa fa-link fa-fw form-icon"></i>
+                            <input class="form-control" type="text" placeholder="Enter a URL" name="url" required>
+                        </div>
+
+                        <input type="submit" class="btn btn-sec btn-full" value="Mask">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>-->
+
+    <%- include footer.ejs %>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="/scripts/logout.js"></script>
+    <script>
+        var data = <%- data %>
+        var links = {}
+
+        $(document).ready(function(){
+            $('.linkalert').hide()
+            $('.maskalert').hide()
+            $('#linkmsg').hide()
+            $('#maskmsg').hide()
+            $("#customUrl").hide()
+            $('#displaybtn').text(data.firstName);
+            $('#customlinks span').text(data.links.customlinks.length);
+            //console.log(data)
+
+            $('#isCustom').click(function() {
+                $("#customUrl").toggle(this.checked);
+            });
+            console.log(isSelected('#alllinks'))
+            $('.tab').click(function(){
+                $('.tab').removeClass('selected')
+                $(this).addClass('selected')
+
+                var index = $('.tab').index(this)
+
+                switch(index){
+                    case 0:
+                        getAllLinks()
+                        break
+                    case 1:
+                        getCustomLinks()
+                        break
+                    case 2:
+                        getMaskedLinks()
+                        break
+                }
+            })
+
+            $('#link-form').submit(function(event){
+                var link = $("#link-form input[name='url']").val()
+
+                if(validateLink(link)){
+                    //Suspend the modal
+                    $('#link-modal').modal('toggle')
+                    $('#loader-modal').modal('toggle')
+
+                    if($("#isCustom").is(":checked")){
+                        var customlink = $("#link-form input[name='custom-url']").val()
+                        console.log(data.email);
+                        console.log(customlink);
+                        $.ajax({
+                            url: '/new',
+                            method: 'post',
+                            data: {"email": data.email, "link": link, "customlink": customlink},
+                            success: function(result){
+                                console.log(result)
+                                $('#loader-modal').modal('toggle')
+                                $('.tab').eq(0).removeClass('selected')
+                                $('.tab').eq(1).addClass('selected')
+                                getCustomLinks()
+                            }
+                        })
+                    }else{
+                        $.ajax({
+                            url: '/new',
+                            method: 'post',
+                            data: {"email": data.email, "link": link},
+                            success: function(result){
+                                console.log(result)
+                                $('#loader-modal').modal('toggle')
+                                getAllLinks()
+                            }
+                        })
+                    }
+
+                }else{
+                    $('#linkmsg').fadeIn(400)
+                }
+                event.preventDefault()
+            })
+
+            /*$("#mask-form").submit(function(event){
+                var link = $("#mask-form input[name='url']").val()
+
+                if(validateLink(link)){
+                    $('#mask-modal').modal('toggle')
+                    $.ajax({
+                        url: '/new',
+                        method: 'post',
+                        data: {"email": data.email, "link": link, "mask": true},
+                        success: function(result){
+                            console.log(result)
+                            getMaskedLinks()
+                        }
+                    })
+                }else{
+                    $('#maskmsg').fadeIn(400)
+                }
+
+                event.preventDefault()
+            })*/
+
+            getAllLinks();
+        })
+
+        function validateLink(link){
+            var pattern =/([http || https]\:\/\/)+([www || \w])+(.)+(\w)+(.)+([A-Za-z])/
+
+            if(pattern.test(link))
+                return true
+
+            return false
+        }
+
+        function isEmpty(param){
+            for(var i in param){
+                if(param[i].length != 0)
+                    return false
+            }
+
+            return true;
+        }
+
+        function getAllLinks(){
+            $.ajax({
+                url: '/geturls',
+                method: 'post',
+                data: {"email": data.email},
+                success: function(result){
+                    links = result
+                    //console.log(links)
+                    displayAllLinks(links)
+                }
+            })
+        }
+
+        function getCustomLinks(){
+            $.ajax({
+                url: '/geturls',
+                method: 'post',
+                data: {"email": data.email},
+                success: function(result){
+                    //links = result
+                    //console.log(links)
+                    displayCustomLinks(result)
+                }
+            })
+        }
+
+        function getMaskedLinks(){
+            /*$.ajax({
+                url: '/geturls',
+                method: 'post',
+                data: {"email": data.email},
+                success: function(result){
+                    //links = result
+                    //console.log(links)
+                    displayMaskedLinks(result)
+                }
+            })*/
+            $('.linkData').empty()
+            $('.linkalert').fadeOut(400)
+            $('.maskalert').fadeOut(400)
+            $('.maskalert').fadeIn(400)
+        }
+
+        function displayAllLinks(data){
+            //console.log(data.links)
+            $('#alllinks span').text(data.urls.length);
+            if(isEmpty(data.urls)){
+                $('.linkalert').fadeOut(400)
+                $('.linkalert').fadeIn(400)
+                $('.maskalert').fadeOut(400)
+                $('.linkData').empty()
+            }
+            else{
+                $('.alert').fadeOut(400)
+                $('.linkData').empty()
+                for(var i=0;i<data.urls.length;i++){
+                    if(data.urls[i]['title'].length > 30){
+                        $('.linkData').append(`<div class="col-xs-12 col-md-4 col-sm-6 link-wraper">
+                            <div class="link-card">
+                                <i class="fa fa-times deleteicon" onclick="deleteURL($(this))"></i>
+                                <h3 class="text-center">`+data.urls[i]['title'].substr(0, 25)+`...</h3>
+                                <p class="text-center"> original-url:
+                                <a href="`+data.urls[i]['original-url']+`" target="_blank">`+data.urls[i]['original-url']+`</a></p>
+                                <p class="text-center shorturl"> short-url:
+                                <a href="`+data.urls[i]['short-url']+`" target="_blank">`+data.urls[i]['short-url']+`</a></p>
+                            </div>
+                        </div>`)
+                    }else{
+                        $('.linkData').append(`<div class="col-xs-12 col-md-4 col-sm-6 link-wraper">
+                            <div class="link-card">
+                                <i class="fa fa-times deleteicon" onclick="deleteURL($(this))"></i>
+                                <h3 class="text-center">`+data.urls[i]['title']+`</h3>
+                                <p class="text-center"> original-url:
+                                <a href="`+data.urls[i]['original-url']+`" target="_blank">`+data.urls[i]['original-url']+`</a></p>
+                                <p class="text-center shorturl"> short-url:
+                                <a href="`+data.urls[i]['short-url']+`" target="_blank">`+data.urls[i]['short-url']+`</a></p>
+                            </div>
+                        </div>`)
+                    }
+                }
+
+                $('.linkData').append(`<div class="col-xs-12 col-md-4 col-sm-6 link-wraper">
+                    <div class="link-card addCard" data-toggle="modal" data-target="#link-modal">
+                        <h3 class="text-center"><i class="fa fa-plus fa-fw"></i> Add</h3>
+                    </div>
+                </div>`)
+
+            }
+        }
+
+        function displayCustomLinks(data){
+            $("#customlinks span").text(data.customlinks.length);
+            if(isEmpty(data.customlinks)){
+                $('.linkalert').fadeOut(400)
+                $('.linkalert').fadeIn(400)
+                $('.maskalert').fadeOut(400)
+                $('.linkData').empty()
+            }else{
+                $('.alert').fadeOut(400)
+                $('.linkData').empty()
+
+                for(var i=0;i<data.customlinks.length;i++){
+                    if(data.customlinks[i]['title'].length > 30){
+                        $('.linkData').append(`<div class="col-xs-12 col-md-4 col-sm-6 link-wraper">
+                            <div class="link-card">
+                            <i class="fa fa-times deleteicon" onclick="deleteURL($(this))"></i>
+                            <h3 class="text-center">`+data.customlinks[i]['title'].substr(0, 25)+`...</h3>
+                            <p class="text-center"> original-url:
+                            <a href="`+data.customlinks[i]['original-url']+`" target="_blank" class="text-center">`+data.customlinks[i]['original-url']+`</a></p>
+                            <p class="text-center shorturl"> short-url:
+                            <a href="`+data.customlinks[i]['short-url']+`" target="_blank" >`+data.customlinks[i]['short-url']+`</a></p>
+                            </div>
+                        </div>`)
+                    }else{
+                        $('.linkData').append(`<div class="col-xs-12 col-md-4 col-sm-6 link-wraper">
+                            <div class="link-card">
+                            <i class="fa fa-times deleteicon" onclick="deleteURL($(this))"></i>
+                            <h3 class="text-center">`+data.customlinks[i]['title']+`</h3>
+                            <p class="text-center"> original-url:
+                            <a href="`+data.customlinks[i]['original-url']+`" target="_blank" class="text-center">`+data.customlinks[i]['original-url']+`</a></p>
+                            <p class="text-center shorturl"> short-url:
+                            <a href="`+data.customlinks[i]['short-url']+`" target="_blank" >`+data.customlinks[i]['short-url']+`</a></p>
+                            </div>
+                        </div>`)
+                    }
+                }
+                $('.linkData').append(`<div class="col-xs-12 col-md-4 col-sm-6 link-wraper">
+                    <div class="link-card addCard" data-toggle="modal" data-target="#link-modal">
+                        <h3 class="text-center"><i class="fa fa-plus fa-fw"></i> Add</h3>
+                    </div>
+                </div>`)
+            }
+        }
+
+        function deleteURL(ele){
+            var short_url = ele.siblings('.shorturl').children().text();
+            console.log("SHPRt: "+short_url);
+            $.ajax({
+                url: '/deleteURL',
+                method: 'post',
+                data: {email: data.email, shortLink: short_url},
+                success: function(){
+                    console.log("Deleted")
+                    if(isSelected("#alllinks"))
+                        getAllLinks()
+                    else
+                        getCustomLinks()
+                }
+            });
+        }
+
+        function isSelected(ele){
+            var classes = $(ele).attr('class');
+            classes = classes.split(" ");
+            console.log(classes);
+
+            for(var i=0;i<classes.length;i++){
+                if(classes[i] === "selected")
+                    return true;
+            }
+
+            return false;
+        }
+
+        /*function displayMaskedLinks(data){
+            if(isEmpty(data.maskedlinks)){
+                $('.maskalert').fadeOut(400)
+                $('.maskalert').fadeIn(400)
+                $('.linkData').empty()
+            }else{
+                $('.alert').fadeOut(400)
+                $('.linkData').empty()
+
+                for(var i=0;i<data.maskedlinks.length;i++){
+                    $('.linkData').append(`<div class="col-xs-12 col-md-4 col-sm-6 link-wraper">
+                        <div class="link-card">
+                            <h3 class="text-center">`+data.maskedlinks[i]['title']+`</h3>
+                            <p class="text-center"> original-url: `+data.maskedlinks[i]['original-url']+`</p>
+                            <p class="text-center"> masked-url: `+data.maskedlinks[i]['masked-url']+`</p>
+                        </div>
+                    </div>`)
+                }
+                $('.linkData').append(`<div class="col-xs-12 col-md-4 col-sm-6 link-wraper">
+                    <div class="link-card addCard" data-toggle="modal" data-target="#mask-modal">
+                        <h3 class="text-center"><i class="fa fa-plus fa-fw"></i> Mask</h3>
+                    </div>
+                </div>`)
+            }
+        }*/
+
+    </script>
+</body>
+</html>

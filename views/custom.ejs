@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="rgb(0, 0, 0)">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <link rel="stylesheet" href="/stylesheets/otherStyles.css">
+</head>
+<body>
+  <%- include header.ejs %>
+
+  <div class="container-fluid main" style="">
+    <%-include social-buttons.ejs %>
+
+    <div class="toprow">
+      <h1 class="text-center headings">Track <span class="keyword" style="color: #FEF600"></span></h1>
+    </div>
+
+  </div>
+
+  <div class="container-fluid second">
+
+    <h1 class="text-center heading">Track</h1><br>
+    <div class="rule"></div><br>
+
+    <div class="row">
+      <div class="col-xs-1 col-md-3 col-sm-2"></div>
+      <div class="col-xs-10 col-md-6 col-sm-8">
+        <p class="text-center description">
+          Save all those URL's that you visits throughout your day. 
+        </p>
+      </div>
+      <div class="col-xs-1 col-md-3 col-sm-2"></div>
+    </div>
+
+  </div>
+
+  <div class="container-fluid fourth">
+    <p class="text-center">
+      <button type="btn" class="btn btn-sec btn-big" data-toggle="modal" data-target="#signup-modal">CREATE AN ACCOUNT</button>
+    </p>
+  </div>
+
+  <%- include footer.ejs %>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="/scripts/common.js"></script>
+  <script>
+
+    $(document).ready(function(){
+
+      setTimeout(function(){
+        typetext('Links', '.keyword', function(){});
+      }, 300);
+
+    })
+
+  </script>
+</body>
+</html>

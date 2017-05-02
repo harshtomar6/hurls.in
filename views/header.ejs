@@ -1,0 +1,100 @@
+<nav class="navbar navbar-inverse navbar-fixed-top" id="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/" class="navbar-brand" style="color: #FEF600;">hurls</a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar">
+            <ul class="nav navbar-nav">
+                <li><a href="/getting-started">Getting Started</a></li>
+                <li><a href="/track-links">Track</a></li>
+                <li><a href="/about">About</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <button type="button" class="btn" data-toggle="modal" data-target="#login-modal"><i class="fa fa-sign-in fa-fw"></i> Log In</button>
+                <button type="button" class="btn" data-toggle="modal" data-target="#signup-modal"><i class="fa fa-user-plus fa-fw"></i> Sign Up</button>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!--Login Modal-->
+<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                    <span aria-hidden="true" class="title">&times;</span>
+                </button>
+                <h5 class="modal-title text-center"><i class="fa fa-sign-in fa-fw"></i> Log In</h5>
+            </div>
+            <div class="modal-body">
+                <div class="alert form-alert" id="msg">
+                    <i class="fa fa-exclamation-triangle fa-fw"></i> <strong>Password do not match</strong>
+                </div>
+                <form action="/login" method="post" id="login-form">
+                    <div class="form-wrap">
+                        <i class="fa fa-envelope fa-fw form-icon"></i>
+                        <input class="form-control" type="email" placeholder="E-mail" name="email" required>
+                    </div>
+                    <div class="form-wrap">
+                        <i class="fa fa-key fa-fw form-icon"></i>
+                        <input class="form-control" type="password" placeholder="Password" name="password" required>
+                    </div>
+                    <h5 style="text-align:right; margin:0"><a href="#">Forgot Password?</a></h5>
+                    <input type="submit" class="btn btn-sec btn-full" value="Log In">
+                    <h5 class="text-center" style="margin: 15px 0 0 0;">Don't have an Account? <a href="#" data-toggle="modal" data-target="#signup-modal" data-dismiss="modal">Register Now</a></h5>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Signup Modal-->
+<div class="modal fade" id="signup-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog  modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                    <span aria-hidden="true" class="title">&times;</span>
+                </button>
+                <h5 class="modal-title text-center"><i class="fa fa-user-plus fa-fw"></i> Sign Up</h5>
+            </div>
+            <div class="modal-body">
+                <div class="alert form-alert" id="msg1">
+                    <i class="fa fa-exclamation-triangle fa-fw"></i> <strong>Password do not match</strong>
+                </div>
+                <form action="/signup" method="post" id="signup-form">
+                    <div class="row form-wrap">
+                    <div class="col-xs-6">
+                        <i class="fa fa-user form-icon"></i>
+                        <input class="form-control" type="text" placeholder="First Name" name=firstName required>
+                    </div>
+                    <div class="col-xs-6" >
+                        <i class="fa fa-user form-icon"></i>
+                        <input class="form-control" type"text" placeholder="Last Name" name=lastName required>
+                    </div>
+                    </div>
+                    <div class="form-wrap">
+                        <i class="fa fa-envelope form-icon"></i>
+                        <input class="form-control" type="email" placeholder="E-mail" name="email" required>
+                    </div>
+                    <div class="form-wrap">
+                        <i class="fa fa-key form-icon"></i>
+                        <input class="form-control" type="password" placeholder="Password" name="password" required>
+                    </div>
+                    <div class="form-wrap">
+                        <i class="fa fa-key form-icon"></i>
+                        <input class="form-control" type="password" placeholder="Repeat Password" name="repeatPassword" required>
+                    </div>
+                    <h5 class="text-center" style="margin: 10px 0 20px 0;">Already a Member? <a href="#" data-toggle="modal" data-target="#login-modal" data-dismiss="modal">Log In</a></h5>
+                    <input type="submit" class="btn btn-sec btn-full" value="Sign Up">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

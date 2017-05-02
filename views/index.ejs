@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+  <%- include header.ejs %>
+
+  <div class="container-fluid main">
+    <%- include social-buttons.ejs %>
+    <div class="row ">
+      <div class="col-md-3"></div>
+      <div class="col-md-9 col-xs-12 toprow">
+          <h1 class="headings">HURLS is all about <span class="keyword" style="color: #FEF600"></span></h1>
+      </div>
+      <div class="col-md-3"></div>
+    </div>
+    <div class="row">
+      <div class="col-md-3 col-sm-2"></div>
+      <div class="col-xs-12 col-sm-8 col-md-6">
+        <form action="/new" method="GET" id="data">
+          <div class="wraper">
+            <input class="form-control" type="text" placeholder="Enter a URL (http://exm.com)" name="url" id="url" autocomplete="off">
+            <input type="submit" value="Submit" class="btn" id="submitBtn">
+          </div>
+        </form>
+        <br>
+        <div class="alert" id="errMessage">
+          <strong><i class="fa fa-exclamation-triangle fa-fw"></i> Please enter a valid URL</strong>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-2"></div>
+    </div>
+  </div>
+
+    <div class="container-fluid second" id="second">
+        <div class="row">
+            <div class="col-md-3 col-sm-6 col-xs-12 wrap">
+                <div class="card-head">
+                    <p class="text-center"><i class="fa fa-external-link"></i></p>
+                </div>
+                <div class="card-body">
+                    <h3 class="text-center" style="color: white">Shorten</h3>
+                    <p class="text-center" style="color: lightgrey">Get started to short your links and make even more from your marketing compaign</p>
+                    <p class="text-center"><a href="/getting-started" class="btn btn-sec">Learn More <i class="fa fa-caret-right fa-fw"></i></a></p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12 wrap">
+                <div class="card-head">
+                    <p class="text-center"><i class="fa fa-link"></i></p>
+                </div>
+                <div class="card-body">
+                    <h3 class="text-center" style="color: white">Customize</h3>
+                    <p class="text-center" style="color: lightgrey">Customize your URL's by making use of our powerfull back-end technology and get even more professional short URL</p>
+                    <p class="text-center"><a href="/custom-links" class="btn btn-sec">Learn More <i class="fa fa-caret-right fa-fw"></i></a></p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12 wrap">
+                <div class="card-head">
+                    <p class="text-center"><i class="fa fa-globe"></i></p>
+                </div>
+                <div class="card-body">
+                    <h3 class="text-center" style="color: white">Track</h3>
+                    <p class="text-center" style="color: lightgrey">Keep track of all your links and make your marketing campaign more productive</p>
+                    <p class="text-center"><a href="/getting-started" class="btn btn-sec">Learn More <i class="fa fa-caret-right fa-fw"></i></a></p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12 wrap">
+                <div class="card-head">
+                    <p class="text-center"><i class="fa fa-users"></i></p>
+                </div>
+                <div class="card-body">
+                    <h3 class="text-center" style="color: white">Grow</h3>
+                    <p class="text-center" style="color: lightgrey">See instant results and identify the problem in your strategy that are lagging you behind</p>
+                    <p class="text-center"><a href="/getting-started" class="btn btn-sec">Learn More <i class="fa fa-caret-right fa-fw"></i></a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid third">
+        <div class="col-xs-12">
+            <h1 class="text-center headings">See HURLS at <span class="keywor" style="color: #FEF600"></span></h1>
+            <br><br>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3 col-sm-2 col-xs-1"></div>
+            <div class="col-md-6 col-xs-10 col-sm-8">
+              <h3 class="text-center headings">Shorten</h3>
+              <video src="/assets/videos/short-action.webm" controls id="short_video"></video>
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-1"></div>
+        </div>
+    </div>
+    <div class="container-fluid fourth">
+        <p class="text-center">
+            <button type="btn" class="btn btn-sec btn-big" data-toggle="modal" data-target="#signup-modal">CREATE AN ACCOUNT</button>
+        </p>
+    </div>
+    <%- include footer.ejs %>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="/scripts/common.js"></script>
+    <script>
+
+        $(document).ready(function(){
+
+            //URL Regex
+            var pattern =/([http || https]\:\/\/)+([www || \w])+(.)+(\w)+(.)+([A-Za-z])/
+            $('#errMessage').hide();
+
+            //URL validation
+            $('#data').submit(function(event){
+                var val = $('#url').val()
+                if(pattern.test(val))
+                    return
+                else
+                    $('#errMessage').fadeIn(400);
+                event.preventDefault()
+            })
+
+            $(':text').on('input', function(){
+                var val = $('#url').val()
+                if(pattern.test(val) || val == ''){
+                    $('#errMessage').fadeOut(400)
+                    return
+                }
+                else
+                    $('#errMessage').fadeIn(400);
+            })
+
+            $('.headings').hide();
+            setTimeout(function(){
+                $('.headings').fadeIn(3000)
+            }, 300)
+
+            //animate typing
+            animateTyping()
+
+            //animate carousel
+            var t = setInterval(function(){
+            	$("#carousel ul").animate({marginLeft:-680},1000,function(){
+            		$(this).find("li:last").after($(this).find("li:first"));
+            		$(this).animate({marginLeft:0}, 1000);
+            	})
+        	},5000);
+
+            $(window).on('scroll', function(){
+                if($(window).scrollTop() >= 800){
+                    typetext("action", ".keywor", function(){});
+                    $(window).off('scroll')
+                };
+            });
+        })
+
+        function animateTyping(){
+            setTimeout(function(){
+               typetext("shortening", ".keyword", function(){
+                   setTimeout(function(){
+                     clearText(".keyword", function(){
+                         typetext("tracking", ".keyword", function(){
+                             setTimeout(function(){
+                                 clearText(".keyword", function(){
+                                        typetext("growing", ".keyword", function(){
+                                            setTimeout(function(){
+                                                clearText(".keyword", function(){
+                                                    animateTyping()
+                                                })
+                                            }, 1000)
+                                        })
+                                 })
+                             }, 1000)
+                         })
+                     })
+                 }, 1000)
+               });
+           }, 1000);
+        }
+
+    </script>
+</body>
+</html>

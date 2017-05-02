@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <link rel="stylesheet" href="/stylesheets/otherStyles.css">
+</head>
+<body>
+  <%-include header.ejs %>
+
+  <!-- Main Conteiner-->
+  <div class="container-fluid main" style="">
+    <%-include social-buttons.ejs %>
+
+    <div class="toprow">
+      <h1 class="text-center headings">Getting <span class="keyword" style="color: #FEF600"></span></h1>
+    </div>
+
+  </div>
+
+  <!--Second Container-->
+  <div class="container-fluid second">
+    <div class="container">
+      <!-- Shorten row -->
+      <div class="wraper">
+        <div class="row">
+          <div class="col-xs-12 col-md-3 col-sm-4">
+            <p class="text-center"><i class="fa fa-external-link fa-fw icon"></i></p>
+          </div>
+          <div class="col-xs-12 col-md-6 col-sm-8">
+            <h2 class="heading">Shorten</h2>
+            <p class="description">Short your long URL's to get a sleaky tiny URL which is  easy to remember and track. Zippy truncates your long links into clean short URL's so that you can share them on different social media platforms</p>
+            <br>
+            <div class="alert">
+              <strong>https://www.amazon.com/b/ref= br_pdt_mgUpt?_encoding=UTF8&node= 6669702011&pf_rd_m= ATVPDKIKX0DER&pf_rd_s= &pf_rd_r=FRF1Z5FTX 44VK9Q9STPB&pf_rd_t= 36701&pf_rd_p=9c7b479f-fe0c-48f3-a1ab-c19df6492672&pf_rd_i=desktop</strong>
+            </div>
+            <p class="text-center description">shortens to </p>
+            <div class="alert">
+              <strong>http://localhost:3000/ln7o</strong>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-3"></div>
+        </div>
+      </div>
+
+      <br><br>
+      <div class="rule"></div>
+      <br><br>
+
+      <!--Customize Row-->
+      <div class="wraper">
+        <div class="row">
+          <div class="col-xs-12 col-md-3 col-sm-4">
+            <p class="text-center"><i class="fa fa-link fa-fw icon"></i></p>
+          </div>
+          <div class="col-xs-12 col-md-6 col-sm-8">
+            <h2 class="heading">Customize</h2>
+              <p class="description">
+                Get Custom short link for your brand and get even more clean and sleaky look. HURLS let you to short your long URL's to short custom links according to your brand
+              </p>
+              <br>
+              <div class="alert">
+                <strong>https://www.amazon.com/b/ref= br_pdt_mgUpt?_encoding=UTF8&node= 6669702011&pf_rd_m= ATVPDKIKX0DER&pf_rd_s= &pf_rd_r=FRF1Z5FTX 44VK9Q9STPB&pf_rd_t= 36701&pf_rd_p=9c7b479f-fe0c-48f3-a1ab-c19df6492672&pf_rd_i=desktop</strong>
+              </div>
+              <p class="text-center description">shortens to </p>
+              <div class="alert">
+                <strong>http://localhost:3000/amazon</strong>
+              </div>
+          </div>
+          <div class="col-xs-12 col-md-3 "></div>
+        </div>
+      </div>
+
+      <br><br>
+      <div class="rule"></div>
+      <br><br>
+
+      <!--Track Row-->
+      <div class="wraper">
+        <div class="row">
+          <div class="col-xs-12 col-md-3 col-sm-4">
+            <p class="text-center"><i class="fa fa-globe fa-fw icon"></i></p>
+          </div>
+          <div class="col-xs-12 col-md-6 col-sm-8">
+            <h2 class="heading">Track</h2>
+            <p class="description">
+              Track all your short and custom links using our powerful back-end technology and never miss out a single link.
+            </p>
+            <br>
+            <div class="alert img-div" data-toggle="modal" data-target="#img-modal">
+              <img src="/assets/prof1.png" class="img-responsive">
+            </div>
+            <p class="description text-center">
+              All Links
+            </p><br><br><br>
+            <div class="alert img-div" data-toggle="modal" data-target="#img-modal">
+              <img src="/assets/prof2.png" class="img-responsive">
+            </div>
+            <p class="description text-center">
+              Custom Links
+            </p>
+          </div>
+          <div class="col-xs-12 col-md-3"></div>
+        </div>
+      </div>
+
+      <br><br>
+      <div class="rule"></div>
+      <br><br>
+
+      <!--Grow Row-->
+      <div class="wraper">
+        <div class="row">
+          <div class="col-xs-12 col-md-3 col-sm-4">
+            <p class="text-center"><i class="fa fa-users fa-fw icon"></i></p>
+          </div>
+          <div class="col-xs-12 col-md-6 col-sm-8">
+            <h2 class="heading">Grow</h2>
+            <p class="description">
+              Grow your marketing campaign like never before. Get details of every click of your link and share even more.
+            </p>
+          </div>
+          <div class="col-xs-12 col-md-3"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!--Image MODAL-->
+  <div class="modal fade" id="img-modal" tab-index="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+      <img src="" class="img-responsive" id="big-image">
+    </div>
+  </div>
+
+  <!--Fourth Container-->
+  <div class="container-fluid fourth">
+    <p class="text-center">
+      <button type="btn" class="btn btn-sec btn-big" data-toggle="modal" data-target="#signup-modal">CREATE AN ACCOUNT</button>
+    </p>
+  </div>
+
+  <!--Footer-->
+  <%-include footer.ejs %>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="/scripts/common.js"></script>
+  <script>
+    $(document).ready(function(){
+
+      setTimeout(function(){
+        typetext("Started", ".keyword", function(){})
+      }, 300)
+
+      $(".img-div").click(function(){
+        var src = $(this).children().attr('src');
+        $("#big-image").attr("src", src);
+      })
+
+    })
+  </script>
+</body>
+</html>

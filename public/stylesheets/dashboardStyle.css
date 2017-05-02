@@ -1,0 +1,121 @@
+
+.tab-wraper{
+    margin-top: 80px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white;
+    position: fixed;
+    z-index: 5;
+}
+.tab-wraper .selected{
+    background-color: #FEF600;
+    color: black;
+    height: 100%;
+}
+.tab{
+    cursor:pointer;
+    transition: background-color 0.6s;
+    height: 100%;
+}
+.badge{
+    background-color: #FEF600;
+    color: black;
+}
+.selected .badge{
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+}
+.link{
+    color: darkred;
+    cursor: pointer;
+}
+.link-wraper{
+    padding: 5px 5px 5px 5px;
+}
+.link-card{
+    padding: 5px 5px 5px 5px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    min-height: 146px;
+    overflow: hidden;
+}
+.addCard{
+    background-color: #FEF600;
+    color: black;
+    cursor: pointer;
+    padding-top: 35px;
+}
+#isCustom{
+  padding: 0;
+  height: 1em;
+}
+input .form-check-input{
+  padding: 0;
+  background-color: red;
+  color: red;
+}
+.form-check-label{
+  padding: 0;
+}
+
+#customUrl{
+    display: hidden;
+}
+.deleteicon{
+    position: absolute;
+    color: #FEF600;
+    font-size: 22px;
+    right: 15px;
+    top: 10px;
+    z-index: 1;
+    cursor: pointer;
+}
+#loader-modal{
+    text-align: center;
+    padding: 0!important;
+}
+#loader-modal:before{
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -4px;
+}
+#loader-modal .modal-dialog{
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+}
+.addbtn{
+    position: fixed;
+    background-color: #FEF600;
+    font-weight: bold;
+    border-radius: 100%;
+    color: black;
+    width: 80px;
+    height: 80px;
+    right: 40px;
+}
+.loader{
+    position: absolute;
+    left: 40%;
+    top: 20%;
+    z-index: 1000;
+    border: 8px solid rgba(0, 0, 0, 0.9);
+    border-radius: 50%;
+    border-top: 8px solid #FEF600;
+    width: 80px;
+    height: 80px;
+    -webkit-animation: spin 1s linear infinite;
+    animation: spin 1s linear infinite;
+}
+
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

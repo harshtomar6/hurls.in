@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <link rel="stylesheet" href="/stylesheets/otherStyles.css">
+</head>
+<body>
+  <%-include header.ejs %>
+
+  <!--Top Container-->
+  <div class="container-fluid main" style="">
+    <%-include social-buttons.ejs %>
+
+    <div class="toprow">
+      <h1 class="text-center headings">About <span class="keyword" style="color: #FEF600"></span></h1>
+    </div>
+
+  </div>
+
+  <div class="container-fluid second">
+    <div class="container">
+      <h1 class="text-center heading">hurls</h1>
+      <br><div class="rule"></div><br>
+      <div class="row">
+        <div class="col-xs-1 col-md-3 col-sm-2"></div>
+        <div class="col-xs-10 col-md-6 col-sm-8">
+          <p class="text-center description">
+            hurls.in is made with keeping a simple objective in mind.<br><br>
+            <span class="wild"> Shorten every long ugly URL that you see on internet into a sleak, simple and good looking link.</span><br><br>
+            hurls.in is a completly free service. You can use it for a variety of purposes.<br>
+          </p><br>
+          <div class="bulletin">
+            <div class="bulletin-head">
+              <h4 class="text-center">hurls as URL shortner</h4>
+            </div>
+            <div class="bulletin-body">
+              <p class="text-center description">
+                The most core feature of hurls is shortening of ling URL's.<br>
+                <a href="/#short_video">See it in action</a>
+              </p>
+            </div>
+          </div><br>
+          <div class="bulletin">
+            <div class="bulletin-head">
+              <h4 class="text-center">hurls as URL customizer</h4>
+            </div>
+            <div class="bulletin-body">
+              <p class="text-center description">
+                hurls can give you custom short links to suit best for your brand.<br>
+                <a href="/#custom_video">See it in action</a>
+              </p>
+            </div>
+          </div><br>
+          <div class="bulletin">
+            <div class="bulletin-head">
+              <h4 class="text-center">hurls as URL saver</h4>
+            </div>
+            <div class="bulletin-body">
+              <p class="text-center description">
+                You can save important URL's that you stumble on internet.<br>
+                <a href="/#short_video">See it in action</a>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-1 col-md-3 col-sm-2"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="container-fluid fourth">
+    <p class="text-center">
+      <button type="btn" class="btn btn-sec btn-big" data-toggle="modal" data-target="#signup-modal">CREATE AN ACCOUNT</button>
+    </p>
+  </div>
+
+  <%-include footer.ejs %>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="/scripts/common.js"></script>
+  <script>
+
+    $(document).ready(function(){
+
+      setTimeout(function(){
+        typetext("Us", ".keyword", function(){})
+      }, 300)
+
+    })
+
+  </script>
+</body>
+</html>

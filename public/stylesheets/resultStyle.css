@@ -1,0 +1,9 @@
+.linkDiv{
+    margin-top: 200px;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.linkDiv a{
+    color: #FEF600;
+    font-size: 2em;
+}

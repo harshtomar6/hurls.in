@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <link rel="stylesheet" href="/stylesheets/resultStyle.css">
+</head>
+<body>
+  <%-include header.ejs %>
+
+  <div class="conatiner-fluid main" style="">
+    <%-include social-buttons.ejs %>
+    <div class="row">
+      <div class="col-md-3 col-xs-1 col-sm-2"></div>
+      <div class="col-md-6 col-xs-10 col-sm-8 linkDiv">
+        <p class="text-center"><a href="<%= data['original link'] %>" target="_blank" id="link"><%= data['short link'] %></a></p>
+        <p class="text-center">
+          <button type="button" class="btn copybtn" style="font-weight: bold">Copy</button>
+        </p><br>
+        <div class="alert" id="copyMsg">
+          <strong><i class="fa fa-exclamation-circle fa-fw"></i> Link copied to clipboard.</strong>
+        </div>
+        <div class="alert" id="loginMsg">
+          <strong><i class="fa fa-exclamation-circle fa-fw"></i> Log in to keep track of all your links</strong>
+        </div>
+      </div>
+      <div class="col-md-3 col-xs-1 col-sm-2"></div>
+    </div>
+
+  </div>
+  <div class="container-fluid fourth">
+    <p class="text-center">
+      <button type="btn" class="btn btn-sec btn-big" data-toggle="modal" data-target="#signup-modal">CREATE AN ACCOUNT</button>
+    </p>
+  </div>
+
+  <%- include footer.ejs %>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="/scripts/common.js"></script>
+  <script>
+
+    $(document).ready(function(){
+      $('.copybtn').click(() => {
+        var $temp = $("<input>");
+        $("body").append($temp);
+        $temp.val($("#link").text()).select();
+        document.execCommand("copy");
+        $temp.remove();
+        $('#copyMsg').fadeIn(1000);
+      })
+
+      $('#loginMsg').hide();
+      $('#copyMsg').hide();
+
+      var t = setTimeout(function(){
+        $('#loginMsg').fadeIn(1000);
+      }, 1000)
+
+    })
+
+  </script>
+</body>
+</html>

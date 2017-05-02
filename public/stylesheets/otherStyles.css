@@ -1,0 +1,54 @@
+.toprow{
+  margin-top: 250px;
+}
+.icon{
+  font-size: 150px;
+  color: #FEF600;
+}
+.second{
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+.heading{
+  color: #FEF600;
+  font-size: 42px;
+}
+.wraper{
+  background-color: transparent;
+}
+.description{
+  color: white;
+  line-height: 25px;
+  font-size: 16px;
+}
+.rule{
+  background-color: #fff;
+  height: 5px;
+  border-radius: 10px;
+  margin: 20px 0 20px 0;
+  width: 20%;
+  margin: auto;
+}
+.bulletin{
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.bulletin-head{
+  background-color: #FEF600;
+  padding: 3px;
+  font-size: 18px;
+  color: black;
+  font-weight: 400;
+  border-left: 1px solid #000;
+  border-right: 1px solid #000;
+}
+.bulletin-body{
+  background-color:#fff;
+  border-left: 1px solid #000;
+  border-right: 1px solid #000;
+  border-bottom: 1px solid #000;
+  padding: 8px;
+}
+.bulletin-body .description{
+  color: black;
+}
