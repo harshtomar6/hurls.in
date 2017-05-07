@@ -66,6 +66,16 @@ html{
     background-color: rgba(0, 0, 0, 0.5);
     font-size: 0.8em;
 }
+.third{
+    padding-top: 6%;
+    padding-bottom: 5%;
+    background-image: url('/assets/dashboard-background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-blend-mode: luminosity;
+    background-color: #2E2424;
+}
 }
 
 @media screen and (min-width: 512px) and (max-width: 1230px){
@@ -88,6 +98,16 @@ html{
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
     }
+    .third{
+        padding-top: 6%;
+        padding-bottom: 5%;
+        background-image: url('/assets/main-background.jpg');
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-attachment: fixed;
+        background-blend-mode: soft-light;
+        background-color: #2E2424;
+    }
 }
 
 @media screen and (min-width: 1231px) and (max-width: 1920px){
@@ -106,6 +126,16 @@ html{
         float:left;
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
+    }
+    .third{
+        padding-top: 6%;
+        padding-bottom: 5%;
+        background-image: url('/assets/main-background.jpg');
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-attachment: fixed;
+        background-blend-mode: soft-light;
+        background-color: #2E2424;
     }
 }
 
@@ -243,16 +273,6 @@ div .wrap{
 #navbar a:hover{
     background-color: #FEF600;
     color: black;
-}
-.third{
-    padding-top: 6%;
-    padding-bottom: 5%;
-    background-image: url('/assets/main-background.jpg');
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    background-attachment: fixed;
-    background-blend-mode: soft-light;
-    background-color: #2E2424;
 }
 .fourth{
     background-color: #2A363B;
