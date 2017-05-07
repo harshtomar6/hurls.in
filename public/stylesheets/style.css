@@ -215,6 +215,14 @@ div .wrap{
     padding: 15px 50px 15px 50px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
 }
+.rule{
+  background-color: #fff;
+  height: 5px;
+  border-radius: 10px;
+  margin: 20px 0 20px 0;
+  width: 20%;
+  margin: auto;
+}
 .navbar{
     border-top: 10px solid #FEF600;
 }
