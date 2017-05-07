@@ -1,2 +1,2 @@
 # hurls.in
-hurls.in is a URL Shortning website
+hurls.in is a URL Shortening website
