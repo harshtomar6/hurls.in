@@ -2,7 +2,7 @@
 <head>
     <meta charset="utf">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zippy | <%= data.firstName %></title>
+    <title>HURLS | <%- data.firstName %></title>
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -28,7 +28,7 @@
         </div>
     </div>
 
-    <div class="container-fluid" style="padding-top: 150px; padding-bottom: 20px;min-height: 600px; background-image: url('/assets/banner01.jpg'); background-size: cover; background-attachment: fixed;">
+    <div class="container-fluid" style="padding-top: 150px; padding-bottom: 20px;min-height: 600px; background-image: url('https://images.pexels.com/photos/313032/pexels-photo-313032.jpeg'); background-size: cover; background-attachment: fixed;">
         <div class="row">
         <div class="col-md-3 col-sm-3"></div>
         <div class="col-md-6 col-sm-6 col-xs-12">
@@ -63,6 +63,9 @@
                 <div class="modal-body">
                     <div class="alert" id="linkmsg">
                         <i class="fa fa-exclamation-triangle fa-fw"></i> <strong>Enter valid URL</strong>
+                    </div>
+                    <div class="alert" id="linkmsg2">
+                        <i class="fa fa-exclamation-triangle fa-fw"></i> <strong>Custom URL field cannot be left empty</strong>
                     </div>
                     <form action="/new" method="post" id="link-form">
                         <div class="form-wrap">
@@ -159,27 +162,36 @@
                 var link = $("#link-form input[name='url']").val()
 
                 if(validateLink(link)){
-                    //Suspend the modal
-                    $('#link-modal').modal('toggle')
-                    $('#loader-modal').modal('toggle')
+
 
                     if($("#isCustom").is(":checked")){
                         var customlink = $("#link-form input[name='custom-url']").val()
                         console.log(data.email);
                         console.log(customlink);
-                        $.ajax({
-                            url: '/new',
-                            method: 'post',
-                            data: {"email": data.email, "link": link, "customlink": customlink},
-                            success: function(result){
-                                console.log(result)
-                                $('#loader-modal').modal('toggle')
-                                $('.tab').eq(0).removeClass('selected')
-                                $('.tab').eq(1).addClass('selected')
-                                getCustomLinks()
-                            }
-                        })
+                        if(customlink != "http://localhost:3000/"){
+                          //Suspend the modal
+                          $('#link-modal').modal('toggle')
+                          $('#loader-modal').modal('toggle')
+                          $.ajax({
+                              url: '/new',
+                              method: 'post',
+                              data: {"email": data.email, "link": link, "customlink": customlink},
+                              success: function(result){
+                                  console.log(result)
+                                  $('#loader-modal').modal('toggle')
+                                  $('.tab').eq(0).removeClass('selected')
+                                  $('.tab').eq(1).addClass('selected')
+                                  getCustomLinks()
+                              }
+                          })
+                        }else{
+                          $("#linkmsg").fadeOut(400);
+                          $("#linkmsg2").fadeIn(400);
+                        }
                     }else{
+                      //Suspend the modal
+                      $('#link-modal').modal('toggle')
+                      $('#loader-modal').modal('toggle')
                         $.ajax({
                             url: '/new',
                             method: 'post',
@@ -193,6 +205,7 @@
                     }
 
                 }else{
+                    $("#linkmsg2").fadeOut(400);
                     $('#linkmsg').fadeIn(400)
                 }
                 event.preventDefault()
