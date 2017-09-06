@@ -9,7 +9,7 @@ var cookieParser = require("cookie-parser")
 var header = require("./header.js")
 
 //URL to connect to database and port number
-var url = 'mongodb://localhost:27017/url'
+var url = 'mongodb://heroku_lr7cwt52:249rppc7g362s1tec03kkbsku@ds127044.mlab.com:27044/heroku_lr7cwt52'
 var port = process.env.PORT || 3000
 
 //Set View engine and add static directory
@@ -75,7 +75,7 @@ app.get('/new', function(req, res){
                     }
                     //console.log("DATA IF = "+document)
                 }else{
-                    var shortUrl = "http://localhost:3000/"
+                    var shortUrl = "http://hurls.in/"
                     shortUrl += database.generateRandom()
                     //else insert the new URL into database
                     collection.insert({
@@ -153,14 +153,14 @@ app.get('/*', function(req, res){
             throw err
 
         db.collection("urlData").find({
-            "short-url": "http://localhost:3000"+requestedUrl
+            "short-url": "http://hurls.in"+requestedUrl
         }).toArray(function(err, data){
             if(database.exists(data)){
                 res.redirect(data[0]['original-url'])
             }else{
                 //masking functionality
                 db.collection("maskedurlData").find({
-                    "masked-url": "http://localhost:3000"+requestedUrl
+                    "masked-url": "http://hurls.in"+requestedUrl
                 }).toArray(function(err, data){
                     if(database.exists(data)){
                         var original_url = data[0]['original-url']

@@ -23,7 +23,7 @@ module.exports.generateRandom = () => {
 }
 
 //URL to connect to database
-var url = "mongodb://localhost:27017/url"
+var url = "mongodb://heroku_lr7cwt52:249rppc7g362s1tec03kkbsku@ds127044.mlab.com:27044/heroku_lr7cwt52"
 
 //user login functionality
 module.exports.loginUser = function(data, callback){
@@ -107,7 +107,7 @@ module.exports.addNewLink = function(data, callback){
         if(err) throw err
 
         var collection = db.collection('users')
-        var shortUrl = "http://localhost:3000/"
+        var shortUrl = "http://hurls.in/"
         shortUrl += generateRandom()
         var title = ""
 
