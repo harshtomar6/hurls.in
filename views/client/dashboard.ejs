@@ -42,7 +42,8 @@
         <div class="col-md-3 col-sm-3"></div>
         </div>
 
-        <div class="row linkData">
+        <div class="linkData">
+					
         </div>
         <div class="modal fade" id="loader-modal" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -310,7 +311,7 @@
                 $('.linkData').empty()
                 for(var i=0;i<data.urls.length;i++){
                     if(data.urls[i]['title'].length > 30){
-                        $('.linkData').append(`<div class="col-xs-12 col-md-4 col-sm-6 link-wraper">
+                        $('.linkData').append(`<div class="link-wraper">
                             <div class="link-card">
                                 <i class="fa fa-times deleteicon" onclick="deleteURL($(this))"></i>
                                 <h3 class="text-center">`+data.urls[i]['title'].substr(0, 25)+`...</h3>
@@ -321,7 +322,7 @@
                             </div>
                         </div>`)
                     }else{
-                        $('.linkData').append(`<div class="col-xs-12 col-md-4 col-sm-6 link-wraper">
+                        $('.linkData').append(`<div class="link-wraper">
                             <div class="link-card">
                                 <i class="fa fa-times deleteicon" onclick="deleteURL($(this))"></i>
                                 <h3 class="text-center">`+data.urls[i]['title']+`</h3>
@@ -334,7 +335,7 @@
                     }
                 }
 
-                $('.linkData').append(`<div class="col-xs-12 col-md-4 col-sm-6 link-wraper">
+                $('.linkData').append(`<div class="link-wraper">
                     <div class="link-card addCard" data-toggle="modal" data-target="#link-modal">
                         <h3 class="text-center"><i class="fa fa-plus fa-fw"></i> Add</h3>
                     </div>
@@ -356,7 +357,7 @@
 
                 for(var i=0;i<data.customlinks.length;i++){
                     if(data.customlinks[i]['title'].length > 30){
-                        $('.linkData').append(`<div class="col-xs-12 col-md-4 col-sm-6 link-wraper">
+                        $('.linkData').append(`<div class="link-wraper">
                             <div class="link-card">
                             <i class="fa fa-times deleteicon" onclick="deleteURL($(this))"></i>
                             <h3 class="text-center">`+data.customlinks[i]['title'].substr(0, 25)+`...</h3>
@@ -367,7 +368,7 @@
                             </div>
                         </div>`)
                     }else{
-                        $('.linkData').append(`<div class="col-xs-12 col-md-4 col-sm-6 link-wraper">
+                        $('.linkData').append(`<div class="link-wraper">
                             <div class="link-card">
                             <i class="fa fa-times deleteicon" onclick="deleteURL($(this))"></i>
                             <h3 class="text-center">`+data.customlinks[i]['title']+`</h3>
@@ -379,7 +380,7 @@
                         </div>`)
                     }
                 }
-                $('.linkData').append(`<div class="col-xs-12 col-md-4 col-sm-6 link-wraper">
+                $('.linkData').append(`<div class="link-wraper">
                     <div class="link-card addCard" data-toggle="modal" data-target="#link-modal">
                         <h3 class="text-center"><i class="fa fa-plus fa-fw"></i> Add</h3>
                     </div>

@@ -36,8 +36,14 @@
     padding: 5px 5px 5px 5px;
     background-color: rgba(0, 0, 0, 0.7);
     color: white;
-    min-height: 146px;
+    height: 200px;
+		width: 315px;
     overflow: hidden;
+}
+.linkData{
+	display: flex;
+	justify-content:space-between;
+	flex-wrap: wrap;
 }
 .addCard{
     background-color: #FEF600;
@@ -62,11 +68,11 @@ input .form-check-input{
     display: hidden;
 }
 .deleteicon{
-    position: absolute;
+    position: relative;
     color: #FEF600;
     font-size: 22px;
-    right: 15px;
-    top: 10px;
+    left: 280px;
+    top: 5px;
     z-index: 1;
     cursor: pointer;
 }
