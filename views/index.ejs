@@ -2,7 +2,6 @@
 <head>
   <meta charset="utf">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="google-site-verification" content="MtCN-qKmO4O6d5RPZeUuKBnyJjcMu0WHsYmABZQPywM" />
   <title>Hurls | URL Shortner</title>
   <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -94,6 +93,103 @@
         <div class="row">
             <div class="col-md-3 col-sm-2 col-xs-1"></div>
             <div class="col-md-6 col-xs-10 col-sm-8">
+=======
+<!DOCTYPE html>
+<head>
+  <meta charset="utf">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hurls | URL Shortner</title>
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="shortcut icon" href="/assets/favicon.png" type="image/png">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+  <%- include header.ejs %>
+
+  <div class="container-fluid main">
+    <%- include social-buttons.ejs %>
+    <div class="row ">
+      <div class="col-md-3"></div>
+      <div class="col-md-9 col-xs-12 toprow">
+          <h1 class="headings">HURLS is all about <span class="keyword" style="color: #FEF600"></span></h1>
+      </div>
+      <div class="col-md-3"></div>
+    </div>
+    <div class="row">
+      <div class="col-md-3 col-sm-2"></div>
+      <div class="col-xs-12 col-sm-8 col-md-6">
+        <form action="/new" method="GET" id="data">
+          <div class="wraper">
+            <input class="form-control" type="text" placeholder="Enter a URL (http://exm.com)" name="url" id="url" autocomplete="off">
+            <input type="submit" value="Submit" class="btn" id="submitBtn">
+          </div>
+        </form>
+        <br>
+        <div class="alert" id="errMessage">
+          <strong><i class="fa fa-exclamation-triangle fa-fw"></i> Please enter a valid URL</strong>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-2"></div>
+    </div>
+  </div>
+
+    <div class="container-fluid second" id="second">
+        <div class="row">
+            <div class="col-md-3 col-sm-6 col-xs-12 wrap">
+                <div class="card-head">
+                    <p class="text-center"><i class="fa fa-external-link"></i></p>
+                </div>
+                <div class="card-body">
+                    <h3 class="text-center" style="color: white">Shorten</h3>
+                    <p class="text-center" style="color: lightgrey">Get started to short your links and make even more from your marketing compaign</p>
+                    <p class="text-center"><a href="/getting-started" class="btn btn-sec">Learn More <i class="fa fa-caret-right fa-fw"></i></a></p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12 wrap">
+                <div class="card-head">
+                    <p class="text-center"><i class="fa fa-link"></i></p>
+                </div>
+                <div class="card-body">
+                    <h3 class="text-center" style="color: white">Customize</h3>
+                    <p class="text-center" style="color: lightgrey">Customize your URL's by making use of our powerfull back-end technology and get even more professional short URL</p>
+                    <p class="text-center"><a href="/getting-started" class="btn btn-sec">Learn More <i class="fa fa-caret-right fa-fw"></i></a></p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12 wrap">
+                <div class="card-head">
+                    <p class="text-center"><i class="fa fa-globe"></i></p>
+                </div>
+                <div class="card-body">
+                    <h3 class="text-center" style="color: white">Track</h3>
+                    <p class="text-center" style="color: lightgrey">Keep track of all your links and make your marketing campaign more productive</p>
+                    <p class="text-center"><a href="/track-links" class="btn btn-sec">Learn More <i class="fa fa-caret-right fa-fw"></i></a></p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12 wrap">
+                <div class="card-head">
+                    <p class="text-center"><i class="fa fa-users"></i></p>
+                </div>
+                <div class="card-body">
+                    <h3 class="text-center" style="color: white">Grow</h3>
+                    <p class="text-center" style="color: lightgrey">See instant results and identify the problem in your strategy that are lagging you behind</p>
+                    <p class="text-center"><a href="/getting-started" class="btn btn-sec">Learn More <i class="fa fa-caret-right fa-fw"></i></a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid third">
+        <div class="col-xs-12">
+            <h1 class="text-center headings">See HURLS at <span class="keywor" style="color: #FEF600"></span></h1>
+            <br><br>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3 col-sm-2 col-xs-1"></div>
+            <div class="col-md-6 col-xs-10 col-sm-8">
+>>>>>>> a215f21b667c8da71519cd9d130e8ab929e0854a
               <h3 class="text-center headings">Shorten</h3><br>
               <div class="embed-responsive embed-responsive-16by9"><br>
                 <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/jjijk3cw_YM" frameborder="1" allowfullscreen></iframe>

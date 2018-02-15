@@ -43,7 +43,7 @@
         </div>
 
         <div class="linkData">
-					
+
         </div>
         <div class="modal fade" id="loader-modal" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -81,7 +81,7 @@
                         </div>
                         <div class="form-wrap" id="customUrl">
                             <i class="fa fa-key fa-fw form-icon"></i>
-                            <input class="form-control" type="text" placeholder="Custom Url" name="custom-url" value="http://localhost:3000/">
+                            <input class="form-control" type="text" placeholder="Custom Url" name="custom-url" value="http://hurls.in/">
                         </div>
                         <input type="submit" class="btn btn-sec btn-full" value="Shorten">
                     </form>
@@ -169,7 +169,7 @@
                         var customlink = $("#link-form input[name='custom-url']").val()
                         console.log(data.email);
                         console.log(customlink);
-                        if(customlink != "http://localhost:3000/"){
+                        if(customlink != "http://hurls.in/"){
                           //Suspend the modal
                           $('#link-modal').modal('toggle')
                           $('#loader-modal').modal('toggle')
