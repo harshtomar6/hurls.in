@@ -28,9 +28,6 @@ $(document).ready(function(){
                     })
                     $('#msg').fadeIn(400)
                 }else{
-                    var now = new Date();
-                    now.setMonth(now.getMonth()+1)
-                    document.cookie = "user="+JSON.stringify(result.success)+';'+"expires="+now.toUTCString();
                     window.location.href = '/'
                     //console.log(result.success)
                 }

@@ -2,6 +2,7 @@
 var express = require('express')
 var app = express()
 var path = require('path')
+var session = require('express-session');
 var mongo = require('mongodb').MongoClient
 var database = require('./database.js')
 var bodyParser = require("body-parser")
@@ -19,13 +20,12 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 app.use(cookieParser())
+app.use(session({ secret: 'asdasdasdawdadad213343qweqwec123', resave: true, saveUninitialized: false }))
 
 //Homepage view
 app.get('/', function(req, res){
-
-    //console.log(req.cookies)
-    if(req.cookies.user){
-        res.render('client/dashboard', {data: req.cookies.user})
+    if(req.session.user){
+        res.render('client/dashboard', {data: JSON.stringify(req.session.user)})
         //console.log(req.cookies.user)
     }
     else
@@ -104,6 +104,7 @@ app.get('/new', function(req, res){
 app.post("/login", function(req, res){
     database.loginUser(req.body, function(msg, data){
         console.log(msg)
+        req.session.user = data;
         res.send(JSON.stringify({"error": msg, "success": data}))
     })
 })
