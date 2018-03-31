@@ -1,17 +1,21 @@
 //Dependencies
-var express = require('express')
-var app = express()
-var path = require('path')
+var express = require('express');
+var app = express();
+var path = require('path');
+let mongoose = require('mongoose');
 var session = require('express-session');
 var mongo = require('mongodb').MongoClient
 var database = require('./database.js')
 var bodyParser = require("body-parser")
 var cookieParser = require("cookie-parser")
 var header = require("./header.js")
+let db = require('./api/models/db');
 
 //URL to connect to database and port number
 var url = 'mongodb://heroku_lr7cwt52:249rppc7g362s1tec03kkbsku@ds127044.mlab.com:27044/heroku_lr7cwt52'
 var port = process.env.PORT || 3000
+
+mongoose.connect(url);
 
 //Set View engine and add static directory
 app.set('view engine', 'ejs')
@@ -22,35 +26,56 @@ app.use(bodyParser.json())
 app.use(cookieParser())
 app.use(session({ secret: 'asdasdasdawdadad213343qweqwec123', resave: true, saveUninitialized: false }))
 
+app.use((req, res, next) => {
+    let ip = req.headers['x-forwarded-for'] || 
+            req.connection.remoteAddress || 
+            req.socket.remoteAddress || 
+            req.connection.socket.remoteAddress;
+    let headers = req.headers['user-agent'];
+    let data = {
+        ip: ip,
+        useragent: headers,
+        page: req.url
+    }
+
+    db.addVisitor(data, (err, success) => {
+        if(err)
+            db.addLog({message: 'Failed to add User Activity'});
+        else
+            db.addLog({message: 'User Activity added'});
+    })
+    next();
+})
+
 //Homepage view
-app.get('/', function(req, res){
+app.get('/', function(req, res, next){
     if(req.session.user){
         res.render('client/dashboard', {data: JSON.stringify(req.session.user)})
-        //console.log(req.cookies.user)
     }
-    else
+    else{
         res.render('index')
+    }
 })
 
 //Getting-started view
-app.get('/getting-started', function(req, res){
+app.get('/getting-started', function(req, res, next){
     res.render('get-started')
 })
 
 //Custom links View
-app.get('/track-links', function(req, res){
+app.get('/track-links', function(req, res, next){
   res.render('custom')
 })
 
 //About Us View
-app.get('/about', function(req, res){
+app.get('/about', function(req, res, next){
   res.render('aboutus')
 })
 
 var originalUrl = ""
 
 //new url view
-app.get('/new', function(req, res){
+app.get('/new', function(req, res, next){
     originalUrl = req.query['url']
     var json_data = {}
 
@@ -101,7 +126,7 @@ app.get('/new', function(req, res){
 })
 
 //User LogIn
-app.post("/login", function(req, res){
+app.post("/login", function(req, res, next){
     database.loginUser(req.body, function(msg, data){
         console.log(msg)
         req.session.user = data;
@@ -110,7 +135,7 @@ app.post("/login", function(req, res){
 })
 
 //User Registration
-app.post('/signup', function(req, res){
+app.post('/signup', function(req, res, next){
     //console.log(req.body)
     database.registerUser(req.body, function(msg){
         console.log(msg)
@@ -120,7 +145,7 @@ app.post('/signup', function(req, res){
 })
 
 //User link add functionality
-app.post('/new', function(req, res){
+app.post('/new', function(req, res, next){
     console.log(req.body)
     database.addNewLink(req.body, function(msg){
         console.log(msg)
@@ -129,7 +154,7 @@ app.post('/new', function(req, res){
 })
 
 //Get all URL's of a User
-app.post('/geturls', function(req, res){
+app.post('/geturls', function(req, res, next){
     console.log(req.body)
     database.getUserLinks(req.body, function(data){
         res.send(data)
@@ -137,7 +162,7 @@ app.post('/geturls', function(req, res){
 })
 
 //User deletes a URL
-app.post('/deleteURL', function(req, res){
+app.post('/deleteURL', function(req, res, next){
     console.log(req.body)
     database.deleteUrl(req.body, function(success){
         res.send(success)
@@ -145,7 +170,7 @@ app.post('/deleteURL', function(req, res){
 })
 
 //Redirection functionality
-app.get('/*', function(req, res){
+app.get('/*', function(req, res, next){
     var requestedUrl = req.url
     //console.log(requestedUrl)
 

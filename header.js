@@ -1,5 +1,5 @@
-var request = require("request")
-var cheerio = require("cheerio")
+var request = require("request");
+var cheerio = require("cheerio");
 
 //Get title of each page
 module.exports.getTitle = function(url, callback){
