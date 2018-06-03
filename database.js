@@ -23,7 +23,7 @@ module.exports.generateRandom = () => {
 }
 
 //URL to connect to database
-var url = "mongodb://heroku_lr7cwt52:249rppc7g362s1tec03kkbsku@ds127044.mlab.com:27044/heroku_lr7cwt52"
+var url = process.env.DATABASE_URI
 
 //user login functionality
 module.exports.loginUser = function(data, callback){

@@ -4,6 +4,8 @@ var app = express();
 var path = require('path');
 let mongoose = require('mongoose');
 var session = require('express-session');
+const dotenv = require('dotenv');
+dotenv.load();
 var mongo = require('mongodb').MongoClient
 var database = require('./database.js')
 var bodyParser = require("body-parser")
@@ -11,11 +13,11 @@ var cookieParser = require("cookie-parser")
 var header = require("./header.js")
 let db = require('./api/models/db');
 
-//URL to connect to database and port number
-var url = 'mongodb://heroku_lr7cwt52:249rppc7g362s1tec03kkbsku@ds127044.mlab.com:27044/heroku_lr7cwt52'
+//port number
+var url = process.env.DATABASE_URI;
 var port = process.env.PORT || 3000
 
-mongoose.connect(url);
+mongoose.connect(process.env.DATABASE_URI);
 
 //Set View engine and add static directory
 app.set('view engine', 'ejs')
@@ -132,6 +134,14 @@ app.post("/login", function(req, res, next){
         req.session.user = data;
         res.send(JSON.stringify({"error": msg, "success": data}))
     })
+});
+
+app.post('/logout', function(req, res, next){
+    req.session.user = null;
+    if(req.session.user)
+        res.send('err');
+    else
+        res.send('done');
 })
 
 //User Registration
@@ -174,7 +184,7 @@ app.get('/*', function(req, res, next){
     var requestedUrl = req.url
     //console.log(requestedUrl)
 
-    mongo.connect(url, function(err, db){
+    mongo.connect(process.env.DATABASE_URI, function(err, db){
         if(err)
             throw err
 
